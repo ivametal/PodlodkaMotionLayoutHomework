@@ -6,12 +6,12 @@ import android.view.View
 import androidx.constraintlayout.motion.widget.MotionHelper
 
 
-class FadeIn : MotionHelper {
+class AnimateOut : MotionHelper {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     override fun setProgress(view: View, progress: Float) {
-        view.alpha = progress
+        view.rotation = (1f - progress) * 360
     }
 }

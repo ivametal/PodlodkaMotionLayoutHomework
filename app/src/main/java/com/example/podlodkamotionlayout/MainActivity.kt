@@ -31,20 +31,19 @@ class MainActivity : AppCompatActivity(), MotionLayout.TransitionListener {
 
     override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
         if (p3 - lastProgress > 0) {
-            val atEnd = abs(p3 - 1f) < 0.1f
+            val atEnd = abs(p3 - 1f) < 0.4f
             if (atEnd && fragment is FirstFragment) {
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction
                     .setCustomAnimations(R.animator.show, 0)
                 fragment = SecondFragment().also {
                     transaction
-                        .setCustomAnimations(R.animator.show, 0)
                         .replace(R.id.container, it)
                         .commitNow()
                 }
             }
         } else {
-            val atStart = p3 < 0.9f
+            val atStart = p3 < 0.6f
             if (atStart && fragment is SecondFragment) {
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction
